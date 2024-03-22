@@ -134,3 +134,18 @@ class BookLog(models.Model):
     def __str__(self):
         return self.parent_book.customer.customer_name + " | " + str(self.change) + " | " + self.description + " | " + str(self.date)
 
+#class financial_year(models.Model):
+    #it contains yearly turnover 
+    #how much we user paid as a tax to gov(gst)
+    #sales -report like  pie chart or atleas numerical table about sales  # like which we sells more ,which material we purchase more
+
+    #should i maintain the attendence of employee also
+    #based on this it should maintain emoloyee records of salary 
+    # it can also be used in financial reports #workforce payments
+    
+    #what about current and maintainance bill   ?? i think these also shoul be included
+    #this is current target
+    #
+    #approach
+    # it should based on purchase and sell
+    #like when user updates the booklog or inventry \\\\\\\\

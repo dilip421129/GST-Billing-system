@@ -138,6 +138,7 @@ function customer_result_click() {
     $('#customer-address-input').val(customer_data_json['customer_address']);
     $('#customer-phone-input').val(customer_data_json['customer_phone']);
     $('#customer-gst-input').val(customer_data_json['customer_gst']);
+    $('#customer_search_bar').hide()
 }
 
 function initialize_fuse_customers_search_bar() {
@@ -167,12 +168,24 @@ function update_customer_search_bar(search_string){
     console.log("Update customer search bar with query: " + search_string);
     results = fuse_customers.search(search_string);
     // console.log(results);
+    if (results.length === 0) {
+        $("#customer_search_bar").hide(); // Hide the search bar if there are no results
+        return; // Exit the function early if there are no results
+    }
     $("#customer_search_bar").empty();
     for (var i = 0; i < results.length; i++) {
         $("#customer_search_bar").append(customer_result_to_domstr(results[i]));
     }
+   
     $('.customer-search-result').click(customer_result_click);
 }
+//customer -details- reset
+$('#reset-customer-details').on('click', function() {
+    $('#customer-name-input').val('');
+    $('#customer-address-input').val('');
+    $('#customer-phone-input').val('');
+    $('#customer-gst-input').val('');
+});
 
 
 function initialize_fuse_customers () {
@@ -254,11 +267,13 @@ function update_product_search_bar(search_string){
     console.log("Update product search bar with query: " + search_string);
     results = fuse_products.search(search_string);
     console.log(results);
+    
     $("#product_search_bar").empty();
     for (var i = 0; i < results.length; i++) {
         $("#product_search_bar").append(product_result_to_domstr(results[i]));
     }
     $('.product-search-result').click(product_result_click);
+    //$("#product_search_bar").hide();
 }
 
 
@@ -298,7 +313,8 @@ $(document).ready(function() {
 
     // Initialize auto calculation of amounts
     initialize_auto_calculation();
-
+    // reset the customer form
+   // reset_customer_details();
     // Initialize igst toggle
     $("input[name=igstcheck]").change(function() {
             $('input[name=invoice-qty]').each(function(){
