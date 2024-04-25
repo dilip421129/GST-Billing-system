@@ -17,7 +17,7 @@ function setup_invoice_rows() {
     $("#invoice-form-addrow").click(function(event) {
        event.preventDefault();
        add_invoice_item_row();
-    });
+    });   
 
     for (var i = 0; i <= 4; i++) {
         add_invoice_item_row();
@@ -179,13 +179,7 @@ function update_customer_search_bar(search_string){
    
     $('.customer-search-result').click(customer_result_click);
 }
-//customer -details- reset
-$('#reset-customer-details').on('click', function() {
-    $('#customer-name-input').val('');
-    $('#customer-address-input').val('');
-    $('#customer-phone-input').val('');
-    $('#customer-gst-input').val('');
-});
+
 
 
 function initialize_fuse_customers () {
@@ -325,4 +319,12 @@ $(document).ready(function() {
     // Show the invoice form
     $("#invoice-form")[0].hidden = false;
 
+});
+
+//customer -details- reset
+$('#reset-customer-details').on('click', function() {
+    $('#customer-name-input').val('');
+    $('#customer-address-input').val('');
+    $('#customer-phone-input').val('');
+    $('#customer-gst-input').val('');
 });
